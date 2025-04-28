@@ -1,0 +1,6 @@
+use RemoteTransform in Crate to adjust collision shape position
+	instead of those large/small_offset RTs
+
+state machine:
+	drop crate
+	change hand height

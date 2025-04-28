@@ -1,0 +1,56 @@
+class_name Crate
+extends RigidBody3D
+
+enum Size { LARGE, SMALL }
+
+@export var symbol_scenes: Array[PackedScene]
+
+@export var size: Size
+@export var randomize: bool= false
+
+@onready var mesh_instance_base: MeshInstance3D = $"MeshInstance Base"
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
+
+var type: CrateType
+
+
+
+func _ready() -> void:
+	if randomize:
+		init(CrateType.create_random())
+
+
+func init(_type: CrateType):
+	type= _type
+	init_color()
+	init_symbol()
+
+
+func pick_up(player: Player):
+	freeze= true
+	collision_shape.reparent(player)
+
+	var remote_node: Node
+	match size:
+		Size.LARGE:
+			remote_node= player.carry_large_remote_transform
+		Size.SMALL:
+			remote_node= player.carry_small_remote_transform
+
+	remote_node.remote_path= remote_node.get_path_to(collision_shape)
+
+
+func init_color():
+	mesh_instance_base.set_surface_override_material(0, type.get_material())
+
+
+func init_symbol():
+	var symbol_template: Node3D= symbol_scenes[int(type.symbol)].instantiate()
+
+	for i in 4:
+		var symbol_instance: Node3D= symbol_template.duplicate()
+		symbol_instance.get_child(0).position.z= 0.45
+		add_child(symbol_instance)
+		symbol_instance.rotate_y(deg_to_rad(i * 90))
+
+	symbol_template.queue_free()
