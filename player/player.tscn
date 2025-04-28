@@ -105,17 +105,9 @@ skeleton = NodePath("../..")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.09891)
 
-[node name="Carry Large RemoteTransform" type="RemoteTransform3D" parent="Model/Hands Offset/Carry Large Offset"]
-unique_name_in_owner = true
-update_scale = false
-
 [node name="Carry Small Offset" type="Node3D" parent="Model/Hands Offset"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.705387)
-
-[node name="Carry Small RemoteTransform" type="RemoteTransform3D" parent="Model/Hands Offset/Carry Small Offset"]
-unique_name_in_owner = true
-update_scale = false
 
 [node name="Crate ShapeCast" type="ShapeCast3D" parent="Model"]
 unique_name_in_owner = true

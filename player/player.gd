@@ -19,9 +19,6 @@ extends RigidBody3D
 @onready var carry_large_offset: Node3D = %"Carry Large Offset"
 @onready var carry_small_offset: Node3D = %"Carry Small Offset"
 
-@onready var carry_large_remote_transform: RemoteTransform3D = %"Carry Large RemoteTransform"
-@onready var carry_small_remote_transform: RemoteTransform3D = %"Carry Small RemoteTransform"
-
 @onready var crate_shape_cast: ShapeCast3D = %"Crate ShapeCast"
 
 var carried_crate: Crate

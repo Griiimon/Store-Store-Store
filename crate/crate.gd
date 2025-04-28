@@ -11,6 +11,8 @@ enum Size { LARGE, SMALL }
 @onready var mesh_instance_base: MeshInstance3D = $"MeshInstance Base"
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
+@onready var remote_transform_collision_shape: RemoteTransform3D = $"RemoteTransform CollisionShape"
+
 var type: CrateType
 
 
@@ -26,18 +28,11 @@ func init(_type: CrateType):
 	init_symbol()
 
 
-func pick_up(player: Player):
+func picked_up(player: Player):
 	freeze= true
 	collision_shape.reparent(player)
 
-	var remote_node: Node
-	match size:
-		Size.LARGE:
-			remote_node= player.carry_large_remote_transform
-		Size.SMALL:
-			remote_node= player.carry_small_remote_transform
-
-	remote_node.remote_path= remote_node.get_path_to(collision_shape)
+	remote_transform_collision_shape.remote_path= remote_transform_collision_shape.get_path_to(collision_shape)
 
 
 func init_color():
