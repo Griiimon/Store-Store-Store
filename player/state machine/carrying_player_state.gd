@@ -1,9 +1,14 @@
 class_name CarryingPlayerState
 extends PlayerStateMachineState
 
+signal drop
+
 
 
 func on_physics_process(delta: float):
+	if Input.is_action_just_pressed("drop"):
+		drop.emit()
+		return
 	default_movement(delta)
 
 

@@ -35,6 +35,15 @@ func picked_up(player: Player):
 	remote_transform_collision_shape.remote_path= remote_transform_collision_shape.get_path_to(collision_shape)
 
 
+func drop():
+	remote_transform_collision_shape.remote_path=""
+	remote_transform_collision_shape.force_update_cache()
+	collision_shape.reparent(self)
+	collision_shape.position= Vector3.ZERO
+	reparent(get_tree().current_scene)
+	freeze= false
+
+
 func init_color():
 	mesh_instance_base.set_surface_override_material(0, type.get_material())
 

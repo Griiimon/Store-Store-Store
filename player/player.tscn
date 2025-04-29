@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://d3p5l4r3wlve0"]
+[gd_scene load_steps=21 format=3 uid="uid://d3p5l4r3wlve0"]
 
 [ext_resource type="Script" uid="uid://c82c1us1nsmyc" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://df2lk5g2i5e4f" path="res://player/state machine/player_state_machine.gd" id="2_onrkg"]
 [ext_resource type="Script" uid="uid://cixu24g1hwd52" path="res://player/state machine/default_player_state.gd" id="3_i3pqv"]
 [ext_resource type="Script" uid="uid://oi5ai5ln84li" path="res://player/state machine/pick_up_player_state.gd" id="4_hqtel"]
 [ext_resource type="Script" uid="uid://hiqg3vdkkr31" path="res://player/state machine/carrying_player_state.gd" id="5_sweqy"]
+[ext_resource type="Script" uid="uid://baom11fyge40u" path="res://player/drop_player_state.gd" id="6_g6k8r"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4flbx"]
 friction = 0.25
@@ -142,3 +143,6 @@ script = ExtResource("4_hqtel")
 
 [node name="Carrying" type="Node" parent="State Machine"]
 script = ExtResource("5_sweqy")
+
+[node name="Drop" type="Node" parent="State Machine"]
+script = ExtResource("6_g6k8r")
