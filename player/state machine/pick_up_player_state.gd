@@ -6,10 +6,7 @@ var crate: Crate
 
 
 func on_enter():
-	reset_hand_positions()
-	hand_offset_tween= create_tween()
-	right_hand_tween= create_tween()
-	left_hand_tween= create_tween()
+	reset_tweens(true)
 	
 	hand_offset_tween.tween_property(player.hands_offset, "global_position:y", crate.global_position.y, 0.5)
 	right_hand_tween.tween_property(player.right_hand, "position:x", 0.1, 0.2).as_relative()
