@@ -1,6 +1,3 @@
-use RemoteTransform in Crate to adjust collision shape position
-	instead of those large/small_offset RTs
+dont lower hands automatically after pick up
 
-state machine:
-	drop crate
-	change hand height
+move hands to box left/right when picking up but try to return to crate to center asap
