@@ -22,13 +22,6 @@ func on_enter():
 func reparent_crate(crate: Crate):
 	player.carried_crate= crate
 
-	var parent_node: Node
-	match crate.size:
-		Crate.Size.LARGE:
-			parent_node= player.carry_large_offset
-		Crate.Size.SMALL:
-			parent_node= player.carry_small_offset
-
 	crate.reparent(player.hands_offset)
 	crate.picked_up(player)
 
