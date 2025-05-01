@@ -53,16 +53,24 @@ func default_movement(delta: float):
 		prev_move_vec= move_vec
 
 
-func reset_hand_positions():
+func reset_tweens(reset_hand_position: bool= false):
 	if hand_offset_tween:
 		hand_offset_tween.kill()
-		player.hands_offset.position= player.orig_hand_offset_pos
+		if reset_hand_position:
+			player.hands_offset.position= player.orig_hand_offset_pos
+	hand_offset_tween= create_tween()
+	
 	if right_hand_tween:
 		right_hand_tween.kill()
-		player.right_hand.position= player.orig_right_hand_pos
-	if right_hand_tween:
-		right_hand_tween.kill()
-		player.right_hand.position= player.orig_left_hand_pos
+		if reset_hand_position:
+			player.right_hand.position= player.orig_right_hand_pos
+	right_hand_tween= create_tween()
+	
+	if left_hand_tween:
+		left_hand_tween.kill()
+		if reset_hand_position:
+			player.left_hand.position= player.orig_left_hand_pos
+	left_hand_tween= create_tween()
 
 
 func restore_model_transform()-> bool:
