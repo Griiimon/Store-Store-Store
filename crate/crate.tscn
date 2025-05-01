@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://bbfuduqdwjarx"]
+[gd_scene load_steps=8 format=4 uid="uid://bbfuduqdwjarx"]
 
 [ext_resource type="Script" uid="uid://cnb1bmqj4t5ot" path="res://crate/crate.gd" id="1_g2tbl"]
 [ext_resource type="PackedScene" uid="uid://dbi6pmj8wadhi" path="res://crate/symbols/plus.tscn" id="2_ncwnf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ncwnf"]
+friction = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwnab"]
 albedo_color = Color(0.417257, 0.417257, 0.417257, 1)
@@ -29,6 +32,7 @@ size = Vector3(0.95, 0.95, 0.95)
 collision_layer = 4
 collision_mask = 7
 mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_ncwnf")
 lock_rotation = true
 linear_damp = 1.0
 script = ExtResource("1_g2tbl")
