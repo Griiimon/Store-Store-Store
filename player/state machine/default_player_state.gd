@@ -12,3 +12,4 @@ func on_physics_process(delta: float):
 			return
 
 	default_movement(delta)
+	default_input()
