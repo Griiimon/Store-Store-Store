@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d3p5l4r3wlve0"]
+[gd_scene load_steps=23 format=3 uid="uid://d3p5l4r3wlve0"]
 
 [ext_resource type="Script" uid="uid://c82c1us1nsmyc" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://df2lk5g2i5e4f" path="res://player/state machine/player_state_machine.gd" id="2_onrkg"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://oi5ai5ln84li" path="res://player/state machine/pick_up_player_state.gd" id="4_hqtel"]
 [ext_resource type="Script" uid="uid://hiqg3vdkkr31" path="res://player/state machine/carrying_player_state.gd" id="5_sweqy"]
 [ext_resource type="Script" uid="uid://baom11fyge40u" path="res://player/drop_player_state.gd" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://bpngndkliuy1a" path="res://player/state machine/change_hand_height_player_state.gd" id="7_boad6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4flbx"]
 friction = 0.25
@@ -30,6 +31,11 @@ albedo_color = Color(0.155382, 0.00024306, 0.402582, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_sweqy"]
 material = SubResource("StandardMaterial3D_hqtel")
 size = Vector3(1.25, 0.665, 0.765)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_boad6"]
+material = SubResource("StandardMaterial3D_hqtel")
+radius = 0.28
+height = 0.94
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hs0m"]
 albedo_color = Color(0.72549, 0.6, 0, 1)
@@ -74,9 +80,17 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.419619, -0.455095)
 mesh = SubResource("SphereMesh_4flbx")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Model"]
+[node name="Torso" type="MeshInstance3D" parent="Model"]
 mesh = SubResource("BoxMesh_sweqy")
 skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/Torso"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.5, 0, -0.184)
+mesh = SubResource("CapsuleMesh_boad6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Model/Torso"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.5, 0, -0.184)
+mesh = SubResource("CapsuleMesh_boad6")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.819233, 0)
@@ -110,11 +124,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.09891)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.705387)
 
-[node name="Crate ShapeCast" type="ShapeCast3D" parent="Model"]
+[node name="Crate ShapeCast" type="ShapeCast3D" parent="Model/Hands Offset"]
 unique_name_in_owner = true
 shape = SubResource("SphereShape3D_4flbx")
 target_position = Vector3(0, 0, -1)
 collision_mask = 4
+
+[node name="Orig Hands Offset" type="Node3D" parent="Model/Hands Offset"]
+unique_name_in_owner = true
+
+[node name="Hands Offset High" type="Node3D" parent="Model"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_onrkg")
@@ -146,3 +167,10 @@ script = ExtResource("5_sweqy")
 
 [node name="Drop" type="Node" parent="State Machine"]
 script = ExtResource("6_g6k8r")
+
+[node name="Hands Up" type="Node" parent="State Machine"]
+script = ExtResource("7_boad6")
+
+[node name="Hands Down" type="Node" parent="State Machine"]
+script = ExtResource("7_boad6")
+direction = -1

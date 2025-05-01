@@ -53,6 +53,13 @@ func default_movement(delta: float):
 		prev_move_vec= move_vec
 
 
+func default_input():
+	if Input.is_action_just_pressed("hands_up"):
+		player.state_machine.hands_up()
+	elif Input.is_action_just_pressed("hands_down"):
+		player.state_machine.hands_down()
+	
+
 func reset_tweens(reset_hand_position: bool= false):
 	if hand_offset_tween:
 		hand_offset_tween.kill()

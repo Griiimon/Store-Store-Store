@@ -3,6 +3,8 @@ extends RigidBody3D
 
 @export var speed: float= 3.0
 
+@onready var state_machine: PlayerStateMachine = $"State Machine"
+
 @onready var model: Node3D = $Model
 @onready var nose: MeshInstance3D = %Nose
 
@@ -12,12 +14,15 @@ extends RigidBody3D
 @onready var right_hand: MeshInstance3D = %"Right Hand"
 @onready var left_hand: MeshInstance3D = %"Left Hand"
 
+@onready var orig_hands_offset: Node3D = %"Orig Hands Offset"
 @onready var orig_hand_offset_pos: Vector3= hands_offset.position
 @onready var orig_right_hand_pos: Vector3= right_hand.position
 @onready var orig_left_hand_pos: Vector3= left_hand.position
 
-@onready var carry_large_offset: Node3D = %"Carry Large Offset"
-@onready var carry_small_offset: Node3D = %"Carry Small Offset"
+@onready var hands_offset_high: Node3D = %"Hands Offset High"
+
+#@onready var carry_large_offset: Node3D = %"Carry Large Offset"
+#@onready var carry_small_offset: Node3D = %"Carry Small Offset"
 
 @onready var crate_shape_cast: ShapeCast3D = %"Crate ShapeCast"
 
@@ -26,6 +31,7 @@ var carried_crate: Crate
 
 
 func _ready() -> void:
+	orig_hands_offset.reparent(model)
 	camera_parent.top_level= true
 
 
