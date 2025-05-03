@@ -1,3 +1,5 @@
 dont lower hands automatically after pick up
 
 move hands to box left/right when picking up but try to return to crate to center asap
+
+run restore_model_transform() ( rename carried_crate_overlap() ) when lowering/raising hands while carrying and reset hands offset if it fails
