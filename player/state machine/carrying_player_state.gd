@@ -16,7 +16,7 @@ func on_physics_process(delta: float):
 
 func restore_model_transform()-> bool:
 	var query:= PhysicsShapeQueryParameters3D.new()
-	query.collision_mask= CollisionLayers.CRATES
+	query.collision_mask= CollisionLayers.CRATES + CollisionLayers.WALLS
 	query.transform= player.carried_crate.global_transform
 	query.shape= player.carried_crate.collision_shape.shape
 

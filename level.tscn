@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx34c7u0ehb3b"]
+[gd_scene load_steps=8 format=3 uid="uid://cx34c7u0ehb3b"]
 
 [ext_resource type="Script" uid="uid://db1e7dvk21dqx" path="res://level.gd" id="1_0b4ue"]
 [ext_resource type="Texture2D" uid="uid://cdyis242e8qoj" path="res://icon.svg" id="1_vonw3"]
 [ext_resource type="PackedScene" uid="uid://d3p5l4r3wlve0" path="res://player/player.tscn" id="2_oi3di"]
 [ext_resource type="PackedScene" uid="uid://bbfuduqdwjarx" path="res://crate/crate.tscn" id="3_oi3di"]
+[ext_resource type="PackedScene" uid="uid://di2kee6c55co" path="res://level/wall.tscn" id="5_1ainy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b4ue"]
 albedo_texture = ExtResource("1_vonw3")
@@ -44,3 +45,9 @@ randomize = true
 [node name="Box4" parent="." instance=ExtResource("3_oi3di")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12353, 1.3834, 2.9956)
 randomize = true
+
+[node name="Wall" parent="." instance=ExtResource("5_1ainy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.199, 2.5, -2.854)
+
+[node name="Wall2" parent="." instance=ExtResource("5_1ainy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 10, -7.521, 2.5, -2.854)
